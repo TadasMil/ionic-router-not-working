@@ -13,17 +13,30 @@
       </ion-header>
     
       <ExploreContainer name="Tab 1 page" />
+      <button type="button" @click="redirectToAnotherPage">
+        go to another page
+      </button>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, useIonRouter } from '@ionic/vue';
+
 import ExploreContainer from '@/components/ExploreContainer.vue';
 
 export default  defineComponent({
   name: 'Tab1Page',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  setup() {
+    const router = useIonRouter();
+
+    const redirectToAnotherPage = () => {
+      router.push(`/another-page/123`);
+    }
+
+    return {redirectToAnotherPage}
+  }
 });
 </script>
